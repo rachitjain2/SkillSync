@@ -12,6 +12,7 @@ import { LearningRoadmapView } from './components/LearningRoadmapView';
 import { CareerCopilotView } from './components/CareerCopilotView';
 import { SettingsView } from './components/SettingsView';
 import { MatchAnalysisView } from './components/MatchAnalysisView';
+import { RecruiterDashboardView } from './components/RecruiterDashboardView';
 
 // Authentication Views
 import { LoginView } from './components/LoginView';
@@ -75,7 +76,7 @@ export const App: React.FC = () => {
       const validRoutes: AppRoute[] = [
         'landing', 'login', 'signup', 'forgot-password', 'reset-password', 
         'dashboard', 'profile', 'resume', 'opportunities', 'match-analysis', 'skills', 
-        'roadmap', 'copilot', 'settings'
+        'roadmap', 'copilot', 'recruiter', 'settings'
       ];
 
       if (hash.includes('recovery') || hash.includes('type=recovery')) {
@@ -466,6 +467,14 @@ export const App: React.FC = () => {
               currentProfile={currentProfile}
               onNavigate={handleNavigate}
               opportunities={opportunities}
+            />
+          )}
+
+          {currentRoute === 'recruiter' && (
+            <RecruiterDashboardView
+              currentProfile={currentProfile}
+              opportunities={opportunities}
+              onNavigate={handleNavigate}
             />
           )}
 

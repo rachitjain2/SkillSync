@@ -21,7 +21,8 @@ import {
   Bell, 
   ExternalLink,
   TrendingUp,
-  Award
+  Award,
+  Building2
 } from 'lucide-react';
 import { soundFx } from '../utils/audio';
 import { TalentProfile } from '../types';
@@ -40,6 +41,7 @@ export type AppRoute =
   | 'skills' 
   | 'roadmap' 
   | 'copilot' 
+  | 'recruiter'
   | 'settings';
 
 interface AppLayoutProps {
@@ -125,6 +127,12 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
       badge: 'Live'
     },
     {
+      id: 'recruiter' as AppRoute,
+      label: 'Recruiter Hub',
+      icon: Building2,
+      badge: 'Enterprise'
+    },
+    {
       id: 'settings' as AppRoute,
       label: 'Settings',
       icon: Settings,
@@ -148,6 +156,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
       case 'skills': return 'Skill Radar & Market Gaps';
       case 'roadmap': return 'Personalized Learning Roadmap';
       case 'copilot': return 'AI Career Copilot';
+      case 'recruiter': return 'Recruiter AI Command Center';
       case 'settings': return 'Settings & Preferences';
       default: return 'SkillSync AI';
     }
