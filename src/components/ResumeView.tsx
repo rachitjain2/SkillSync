@@ -476,6 +476,19 @@ export const ResumeView: React.FC<ResumeViewProps> = ({
                   <span className="text-slate-400 block text-[11px] mb-0.5">Career Experience Level</span>
                   <span className="text-emerald-400 font-semibold">Student / Fresher (2 Internships)</span>
                 </div>
+
+                <div className="p-3 rounded-xl bg-[#0A66C2]/[0.08] border border-[#0A66C2]/30 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-lg bg-[#0A66C2]/20 font-mono font-bold text-[#0A66C2] text-xs flex items-center justify-center">in</span>
+                    <div>
+                      <span className="text-white text-xs font-bold block">LinkedIn Profile</span>
+                      <span className="text-slate-400 text-[10px]">linkedin.com/in/rachitjain2</span>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">
+                    Cross-Verified ✓
+                  </span>
+                </div>
               </div>
             </div>
 

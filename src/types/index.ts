@@ -54,6 +54,8 @@ export interface TalentProfile {
   targetSalary: string;
   overallMatchReadiness: number; // 0 - 100
   zeroKnowledgeHash: string;
+  linkedinUrl?: string;
+  linkedinVerified?: boolean;
   skills: SkillItem[];
   experience: ExperienceItem[];
   projects: ProjectItem[];

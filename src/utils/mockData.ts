@@ -25,6 +25,8 @@ export const INITIAL_TALENT_PROFILES: Record<string, TalentProfile> = {
     targetSalary: '$110,000 - $145,000 / $52/hr Internship',
     overallMatchReadiness: 92,
     zeroKnowledgeHash: 'Verified Candidate ID #RJ-8402',
+    linkedinUrl: 'https://linkedin.com/in/rachitjain2',
+    linkedinVerified: true,
     aiExecutiveSummary: 'Your combination of Python + Machine Learning + project experience makes you highly suitable for AI/ML internships and entry-level engineering roles.',
     metrics: {
       codeVelocity: '3.4x baseline',

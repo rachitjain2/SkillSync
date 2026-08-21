@@ -25,6 +25,7 @@ export const SignupView: React.FC<SignupViewProps> = ({ onNavigate }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [linkedinUrl, setLinkedinUrl] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [remember, setRemember] = useState(true);
@@ -354,6 +355,29 @@ export const SignupView: React.FC<SignupViewProps> = ({ onNavigate }) => {
             </div>
           </div>
 
+          {/* LinkedIn Profile Verification Input */}
+          <div>
+            <div className="flex items-center justify-between mb-1.5 ml-1">
+              <label className="block text-xs font-medium text-slate-400">
+                LinkedIn Profile URL <span className="text-slate-500 font-normal">(for AI data verification)</span>
+              </label>
+              <span className="text-[10px] font-mono text-sky-400 font-bold">Recommended</span>
+            </div>
+            <div className="relative">
+              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-sky-400 flex items-center justify-center font-bold font-mono text-xs">
+                in
+              </div>
+              <input
+                type="url"
+                value={linkedinUrl}
+                onChange={(e) => handleInputChange(setLinkedinUrl, e.target.value)}
+                onFocus={handleFocus}
+                placeholder="https://linkedin.com/in/your-profile"
+                className={`w-full pl-11 pr-4 py-3 bg-obsidian-950/50 border border-white/10 focus:outline-none focus:ring-2 rounded-xl text-sm text-white placeholder-slate-600 transition-all ${focusBorderClass}`}
+              />
+            </div>
+          </div>
+
           <div>
             <label className="block text-xs font-medium text-slate-400 mb-1.5 ml-1">Confirm Password</label>
             <div className="relative">
@@ -373,7 +397,7 @@ export const SignupView: React.FC<SignupViewProps> = ({ onNavigate }) => {
                   soundFx.playBlip(750, 0.02);
                   setShowConfirmPassword(!showConfirmPassword);
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-slate-500 hover:text-slate-300 transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
               >
                 {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>

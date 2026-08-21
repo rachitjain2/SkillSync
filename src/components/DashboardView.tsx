@@ -327,6 +327,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 <span className="text-slate-400 font-medium">Experience:</span>
                 <span className="text-slate-200 font-semibold">Student / Fresher</span>
               </div>
+
+              <div className="flex items-center justify-between p-3 rounded-xl bg-[#0A66C2]/[0.08] border border-[#0A66C2]/30">
+                <span className="text-slate-300 font-medium flex items-center gap-1.5 text-xs">
+                  <span className="font-bold text-[#0A66C2]">in</span> LinkedIn Verified:
+                </span>
+                <span className="text-emerald-400 font-bold text-xs flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" /> 100% Synced
+                </span>
+              </div>
             </div>
 
             {/* Top Skills Chips */}

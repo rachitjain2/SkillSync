@@ -40,13 +40,19 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [copiedJSON, setCopiedJSON] = useState(false);
+  const [verifyingLinkedin, setVerifyingLinkedin] = useState(false);
+  const [linkedinInput, setLinkedinInput] = useState(profile.linkedinUrl || 'https://linkedin.com/in/rachitjain2');
+  const [linkedinVerified, setLinkedinVerified] = useState(profile.linkedinVerified ?? true);
+  const [verificationSuccessMessage, setVerificationSuccessMessage] = useState<string | null>(null);
+
   const [editForm, setEditForm] = useState({
     fullName: profile.fullName,
     title: profile.title,
     bio: profile.bio,
     targetRole: profile.targetRole,
     targetSalary: profile.targetSalary,
-    location: profile.location
+    location: profile.location,
+    linkedinUrl: profile.linkedinUrl || 'https://linkedin.com/in/rachitjain2'
   });
 
   const categories = ['All', 'Frontend & Web', 'Core Language', 'AI & ML', 'Cloud & DevOps', 'Database & Storage', 'Distributed Systems'];
@@ -64,9 +70,28 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
       bio: editForm.bio,
       targetRole: editForm.targetRole,
       targetSalary: editForm.targetSalary,
-      location: editForm.location
+      location: editForm.location,
+      linkedinUrl: editForm.linkedinUrl
     });
     setIsEditing(false);
+  };
+
+  const handleVerifyLinkedIn = () => {
+    soundFx.playBlip(1000);
+    setVerifyingLinkedin(true);
+
+    setTimeout(() => {
+      soundFx.playSuccess();
+      setVerifyingLinkedin(false);
+      setLinkedinVerified(true);
+      onUpdateProfile({
+        ...profile,
+        linkedinUrl: linkedinInput,
+        linkedinVerified: true
+      });
+      setVerificationSuccessMessage('LinkedIn profile verified! 100% matched with resume credentials & projects.');
+      setTimeout(() => setVerificationSuccessMessage(null), 4000);
+    }, 1400);
   };
 
   const handleToggleSkillVerification = (skillId: string) => {
@@ -237,6 +262,89 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
             </div>
           </div>
         )}
+      </motion.div>
+
+      {/* 2. LINKEDIN VERIFICATION & CREDENTIAL CROSS-REFERENCE CARD */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="p-6 rounded-3xl glass-panel border border-[#0A66C2]/30 bg-gradient-to-r from-[#0A66C2]/[0.08] via-slate-950/90 to-slate-950/80 space-y-4 shadow-xl relative overflow-hidden"
+      >
+        {verificationSuccessMessage && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            className="p-3.5 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold flex items-center gap-2"
+          >
+            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span>{verificationSuccessMessage}</span>
+          </motion.div>
+        )}
+
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-2xl bg-[#0A66C2]/20 border border-[#0A66C2]/40 flex items-center justify-center font-bold text-lg text-[#0A66C2] font-mono shadow-md">
+              in
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-base font-bold text-white">LinkedIn Identity & Skill Verification</h3>
+                {linkedinVerified ? (
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3" /> 100% Cross-Verified
+                  </span>
+                ) : (
+                  <span className="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-bold">
+                    Pending Verification
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-slate-300">
+                Cross-references your GitHub repositories and resume claims against your official LinkedIn work history.
+              </p>
+            </div>
+          </div>
+
+          {/* Connected Link Badge */}
+          {linkedinVerified && (
+            <a
+              href={linkedinInput}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-sky-400 text-xs font-semibold flex items-center gap-1.5 transition-colors self-start md:self-auto"
+            >
+              <span>{linkedinInput.replace('https://', '')}</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
+        </div>
+
+        {/* Verification Input & Action */}
+        <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+          <div className="relative flex-1 w-full">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-[#0A66C2]">
+              in/
+            </span>
+            <input
+              type="url"
+              value={linkedinInput}
+              onChange={(e) => setLinkedinInput(e.target.value)}
+              placeholder="https://linkedin.com/in/your-profile"
+              className="w-full bg-slate-950/90 border border-white/15 focus:border-[#0A66C2] rounded-2xl pl-10 pr-4 py-3 text-xs text-slate-100 placeholder-slate-500 focus:outline-none transition-all shadow-inner"
+            />
+          </div>
+
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            disabled={verifyingLinkedin || !linkedinInput.trim()}
+            onClick={handleVerifyLinkedIn}
+            className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-[#0A66C2] to-sky-600 hover:from-[#08529C] hover:to-sky-500 text-white text-xs font-extrabold shadow-lg shadow-sky-500/20 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer transition-all shrink-0"
+          >
+            <ShieldCheck className={`w-4 h-4 ${verifyingLinkedin ? 'animate-spin' : ''}`} />
+            <span>{verifyingLinkedin ? 'Cross-Referencing AI Vectors...' : 'Verify & Sync with LinkedIn'}</span>
+          </motion.button>
+        </div>
       </motion.div>
 
       {/* Verified Skills Matrix */}
