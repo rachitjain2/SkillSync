@@ -95,7 +95,7 @@ export const MinimalLanding: React.FC<MinimalLandingProps> = ({
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </motion.button>
 
-          {/* Secondary CTA */}
+          {/* Secondary CTA: Explore Opportunities */}
           <motion.button
             whileHover={{ y: -2, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -107,6 +107,20 @@ export const MinimalLanding: React.FC<MinimalLandingProps> = ({
           >
             <Briefcase className="w-4 h-4 text-sky-400" />
             <span>Explore Opportunities</span>
+          </motion.button>
+
+          {/* Tertiary CTA: Recruiter Hub */}
+          <motion.button
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              soundFx.playBlip(1000);
+              onNavigate('recruiter');
+            }}
+            className="px-7 py-4 rounded-xl font-semibold text-base text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-400/30 hover:border-indigo-400/50 shadow-lg backdrop-blur-md transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <Users className="w-4 h-4 text-indigo-400" />
+            <span>Recruiter Hub</span>
           </motion.button>
         </motion.div>
       </div>
