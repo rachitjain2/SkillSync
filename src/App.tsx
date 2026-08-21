@@ -218,33 +218,41 @@ export const App: React.FC = () => {
       let suggestedPrompts: string[] = [];
 
       const lower = text.toLowerCase();
-      if (lower.includes('anthropic') || lower.includes('streaming') || lower.includes('interview')) {
-        responseText = `Here is your strategic preparation playbook for **Anthropic's Senior AI Full-Stack** role:\n\n### 1. Key Technical Talking Points:\n- **Token Streaming Latency:** Highlight your *OpenAgent-Stream* architecture (handling 4.2M daily inferences with sub-25ms TTFT).\n- **Backpressure Handling:** Explain how you use TypeScript async iterators and Web Streams API to prevent UI jank during 500+ tok/sec burst outputs.\n- **Wasm Sandboxing:** Emphasize your Sprint 1 progress compiling memory-isolated Rust modules into WebAssembly.\n\n### 2. Live Simulation Question:\n*"How would you design a real-time collaborative artifact canvas where multiple users can prompt Claude while seeing real-time DOM diffs?"*\n\n**Recommended Response Structure:**\n1. Explain local-first state synchronization via Yjs.\n2. Detail the token-to-AST streaming parser.\n3. Mention WebContainer microVM isolation for security.`;
+      if (lower.includes('microsoft') || lower.includes('ai engineer') || lower.includes('copilot')) {
+        responseText = `### 🎯 Strategic Interview Playbook: Microsoft AI Engineer Intern (92% Match)\n\n#### 1. Core Technical Talking Points:\n- **Multi-Modal RAG Architecture:** Detail your 420 ★ GitHub project combining Qdrant vector indexing, sentence embeddings, and FastAPI token streaming.\n- **Low-Latency Inference:** Explain your C++ and PyTorch quantization benchmarks reducing latency by 35%.\n- **Database Performance:** Highlight your SQL query optimization (indexing & EXPLAIN ANALYZE) at DataStream Technologies handling 50k IoT feeds.\n\n#### 2. Sample Technical Screening Question:\n> *"How do you handle retrieval hallucination when embedding cosine similarity scores are borderline (<0.65)?"*\n\n**Recommended Response:**\n1. Implement hybrid search (BM25 sparse keyword + dense embeddings).\n2. Apply cross-encoder re-ranking on the top 20 candidate chunks.\n3. Add a confidence threshold gate with explicit citation provenance.`;
         suggestedPrompts = [
-          'Simulate the coding question on SSE backpressure',
-          'How should I respond to behavioral questions on AI safety?',
-          'Draft an opening pitch for the Anthropic hiring manager'
+          'Conduct a live technical mock interview for Microsoft',
+          'Explain how to master AWS SageMaker & Docker to reach 100%',
+          'Critique my RAG project architecture for engineering hiring managers'
         ];
-      } else if (lower.includes('negotiat') || lower.includes('offer') || lower.includes('salary')) {
-        responseText = `### Strategic Compensation Negotiation Blueprint for $245k + Equity:\n\n1. **Leverage Points:**\n- Your top 1.2% algorithmic percentile and verified ZK-proof attestation on Sepolia.\n- Direct domain match: You built an open-source tool (*OpenAgent-Stream*) with 3.4k GitHub stars solving their exact problem.\n- Competing opportunity pipelines with Linear ($250k) and Scale AI ($280k).\n\n2. **Negotiation Script:**\n> *"I'm thrilled about the mission to build intuitive multimodal interfaces for Claude. Based on my existing production track record scaling streaming pipelines and multiple competing offers in the $240k-$260k band, I would be ready to sign immediately if we can align on $235,000 base + 0.18% equity grant with accelerated vesting."*`;
+      } else if (lower.includes('deepmind') || lower.includes('c++') || lower.includes('algorithm')) {
+        responseText = `### 🧠 Google DeepMind ML Engineering Playbook (90% Match)\n\n#### 1. Why DeepMind Values Your Profile:\n- DeepMind looks for candidates who balance high-level Python ML modeling with low-level **C++ SIMD performance**.\n- Your real-time edge vision pipeline in C++ and **Top 2.1% algorithmic rank** give you a significant edge.\n\n#### 2. Key DeepMind Interview Concepts:\n- **Transformer Attention Complexity:** FlashAttention memory tiling ($O(N)$ SRAM vs $O(N^2)$ HBM).\n- **Distributed Training:** PyTorch DDP vs FSDP and gradient accumulation across TPU/GPU clusters.\n- **C++ Concurrency:** Lock-free queues, memory barriers, and SIMD vectorization with OpenCV.`;
         suggestedPrompts = [
-          'What if they push back on the equity percentage?',
-          'How do I negotiate for a signing bonus or compute stipend?',
-          'Review my written counter-offer email draft'
+          'Give me 3 C++ concurrency questions asked at DeepMind',
+          'How do I explain PyTorch DDP multi-GPU training?',
+          'Simulate an algorithmic system design problem'
         ];
-      } else if (lower.includes('wasm') || lower.includes('crdt') || lower.includes('roadmap') || lower.includes('14 days')) {
-        responseText = `### 14-Day Accelerated Roadmap: WebAssembly + CRDT Mastery\n\n- **Days 1-4 (Rust to Wasm):** Write a Rust crate using \`wasm-bindgen\` and \`wasm-pack\` to parse streaming JSON-RPC payloads directly into SharedArrayBuffers.\n- **Days 5-8 (CRDT Fundamentals):** Implement a multi-client collaborative document in TypeScript using \`yjs\` and \`y-webrtc\`.\n- **Days 9-12 (Browser Sandbox):** Connect StackBlitz WebContainers to run virtualized Python/Node.js in-browser with zero server dependency.\n- **Days 13-14 (Portfolio Attestation):** Publish as a verified open-source repo to boost your match scores across Anthropic and Linear to 99%.`;
+      } else if (lower.includes('aws') || lower.includes('docker') || lower.includes('sagemaker') || lower.includes('roadmap') || lower.includes('100%')) {
+        responseText = `### ⚡ 4-Week Accelerated Roadmap to 100% Role Qualification\n\n- **Week 1 (Docker Fundamentals):** Multi-stage builds, CUDA runtime containerization (<450MB image).\n- **Week 2 (Docker + ML Serving):** FastAPI + Uvicorn worker pools, health check probes, Docker Compose with Qdrant.\n- **Week 3 (AWS Fundamentals):** IAM least-privilege security policies, S3 model artifact buckets, EC2 GPU provisioning.\n- **Week 4 (Deploy ML on AWS):** Amazon SageMaker serverless endpoints, ECS Fargate, CloudWatch latency telemetry (<120ms P95).\n\n*Completing these 4 milestones bridges your qualification from 92% to 100% verified match across all 14 target roles.*`;
         suggestedPrompts = [
-          'Add these 14-day milestones to my Learning Roadmap',
-          'Give me the Rust wasm-bindgen boilerplate code',
-          'How do I test Yjs conflict resolution under packet loss?'
+          'Show me the Dockerfile template for PyTorch + FastAPI',
+          'How do I set up an autoscaling SageMaker endpoint?',
+          'Recalculate my matches after completing AWS & Docker'
+        ];
+      } else if (lower.includes('resume') || lower.includes('project') || lower.includes('rag')) {
+        responseText = `### 📝 AI Project Resume Critique: Multi-Modal RAG Knowledge Assistant\n\n#### Original Bullet Points:\n- Built a RAG application in Python and PyTorch with vector search.\n\n#### 🚀 High-Impact Rewritten Version:\n- **Architected and open-sourced** an end-to-end Multi-Modal RAG Knowledge Assistant in **Python, PyTorch, and Qdrant** (420 ★ GitHub), achieving sub-140ms semantic retrieval over 250k+ technical documents.\n- **Constructed asynchronous FastAPI REST endpoints** with connection pooling and Redis caching, sustaining 450+ concurrent requests with zero dropped frames.\n- **Benchmarked token precision and latency**, improving model hallucination resilience by 28% through cross-encoder re-ranking.`;
+        suggestedPrompts = [
+          'Critique my C++ Edge Vision project bullets',
+          'Draft a tailored cover letter for Microsoft Copilot',
+          'How do I present my NIT GPA (3.91) effectively?'
         ];
       } else {
-        responseText = `I have analyzed your inquiry against your **${currentProfile.fullName}** profile and current target role (**${currentProfile.targetRole}**).\n\nKey Recommendations:\n- Your core skills in TypeScript, Next.js, and vLLM are currently in the **top 1.5% of market demand**.\n- You have **5 high-synergy opportunities** ready on your match board, led by Anthropic (96% match) and Vercel (95% match).\n- Completing **Sprint 1 Task 3 (WebContainers in browser)** is your highest-leverage priority today.\n\nLet me know which area you'd like to dive deeper into!`;
+        responseText = `Hello **${currentProfile.fullName}**! I am your **SkillSync AI Career Copilot**.\n\nHere is your current career standing:\n- **Active Persona:** ${currentProfile.fullName} (${currentProfile.title})\n- **Top Opportunity:** Microsoft AI Engineer Intern (**92% Match**)\n- **Key Missing Skills:** AWS & Docker (Closing these will bring your match score to **100%**)\n\nWhat would you like to prepare for next?`;
         suggestedPrompts = [
-          'Prep me for my next technical screening',
-          'How do I optimize my resume bullet points for high impact?',
-          'Review the missing skills for the Linear Staff Platform role'
+          'Conduct a mock interview for the Microsoft AI Engineer Intern role',
+          'Explain the 4-week roadmap to master AWS & Docker',
+          'Critique my RAG project description for tech resumes',
+          'Give me 5 practice C++ algorithm questions asked at Google DeepMind'
         ];
       }
 

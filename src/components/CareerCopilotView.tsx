@@ -35,10 +35,10 @@ export const CareerCopilotView: React.FC<CareerCopilotViewProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const promptStarters = [
-    'Conduct a mock technical interview for Anthropic streaming role',
-    'How should I negotiate for the $245k offer + equity?',
-    'Critique my resume project bullet points for higher impact',
-    'Explain how to master WebAssembly and Yjs CRDTs in 14 days'
+    'Conduct a mock interview for the Microsoft AI Engineer Intern role',
+    'Explain the 4-week roadmap to master AWS & Docker to reach 100%',
+    'Critique my Multi-Modal RAG project description for tech resumes',
+    'Give me 3 practice C++ and PyTorch questions asked at Google DeepMind'
   ];
 
   const scrollToBottom = () => {
