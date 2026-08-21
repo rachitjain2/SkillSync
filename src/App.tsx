@@ -218,41 +218,62 @@ export const App: React.FC = () => {
       let suggestedPrompts: string[] = [];
 
       const lower = text.toLowerCase();
-      if (lower.includes('microsoft') || lower.includes('ai engineer') || lower.includes('copilot')) {
+      if (lower.includes('which jobs') || lower.includes('suitable for') || lower.includes('best jobs')) {
+        responseText = `### 🎯 Roles Most Suitable for Your Profile (${currentProfile.fullName})\n\nBased on your verified skills (**Python 96%**, **Machine Learning 94%**, **C++ 90%**, **SQL 88%**) and project repositories, here are your top 3 highest-conviction opportunities:\n\n1. **AI Engineer Intern @ Microsoft (92% Match)**\n   - **Why you fit:** Strong alignment with Microsoft Copilot foundation models, PyTorch RAG pipelines, and SQL database tuning.\n   - **Skill Gap to 100%:** AWS / Azure cloud deployment.\n\n2. **Machine Learning Engineering Intern @ Google DeepMind (90% Match)**\n   - **Why you fit:** Exceptional algorithmic ranking (Top 2.1%) combined with low-level C++ SIMD optimization.\n   - **Skill Gap to 100%:** Distributed training (JAX).\n\n3. **AI Research Intern @ Meta FAIR (89% Match)**\n   - **Why you fit:** Edge vision and NLP Transformer fine-tuning experience from NeuralCraft Systems.\n   - **Skill Gap to 100%:** Triton GPU kernel optimization.`;
+        suggestedPrompts = [
+          'What skills am I missing for an AI Engineer role?',
+          'How can I improve my resume for Microsoft?',
+          'What should I learn next to reach 100%?'
+        ];
+      } else if (lower.includes('missing') || lower.includes('gaps') || lower.includes('skills am i missing')) {
+        responseText = `### 🔍 Skill Gaps Identified for AI / ML Engineer Roles\n\nComparing your profile against 14 enterprise job specifications, the AI matching model identified **3 primary skill gaps**:\n\n1. **Cloud Deployment (AWS / Azure) — Critical (-5% Score Impact)**\n   - *Why:* Enterprise teams require candidates to deploy models to AWS ECS Fargate or SageMaker inference endpoints rather than running locally.\n   - *Time to Acquire:* 1-2 weeks.\n\n2. **Containerization (Docker) — Recommended (-3% Score Impact)**\n   - *Why:* Standardizing CUDA dependencies and FastAPI microservices with reproducible multi-stage Dockerfiles.\n   - *Time to Acquire:* 1 week.\n\n3. **Cluster Orchestration (Kubernetes) — High Synergy**\n   - *Why:* Scaling distributed GPU worker pods across high-throughput inference clusters.\n   - *Time to Acquire:* 2-3 weeks.\n\n*Closing AWS & Docker will immediately elevate your Microsoft match from 92% to 100%.*`;
+        suggestedPrompts = [
+          'What should I learn next?',
+          'Show me the 4-week learning roadmap',
+          'Conduct a mock interview for the Microsoft AI Engineer Intern role'
+        ];
+      } else if (lower.includes('improve my resume') || lower.includes('improve resume') || lower.includes('resume')) {
+        responseText = `### 📝 Actionable Resume Improvements for ${currentProfile.fullName}\n\nHere are 3 high-impact recommendations to elevate your resume from good to elite:\n\n1. **Quantify Repository Impact:**\n   - *Before:* "Built a RAG application with vector search."\n   - *After:* *"Architected an open-source Multi-Modal RAG Knowledge Assistant in **Python, PyTorch, and Qdrant** (420 ★ GitHub), achieving sub-140ms semantic retrieval across 250k+ technical documents."*\n\n2. **Highlight Low-Latency C++ Depth:**\n   - *Before:* "Wrote computer vision code in C++."\n   - *After:* *"Developed a real-time edge vision pipeline in **C++ and OpenCV** utilizing SIMD vectorization and multithreading, cutting inference latency by 35%."*\n\n3. **Lead with NIT CS & AI Academic Rank:**\n   - Emphasize your **3.91/4.00 GPA** and Dean's Honor List directly in the header education block.`;
+        suggestedPrompts = [
+          'Which jobs am I most suitable for?',
+          'Why was I rejected for this role?',
+          'What should I learn next?'
+        ];
+      } else if (lower.includes('rejected') || lower.includes('rejection') || lower.includes('why was i rejected')) {
+        responseText = `### 🔍 AI Rejection Diagnostic & Root-Cause Analysis\n\nWhen candidates with your profile face rejections at top frontier labs, it is rarely due to fundamental coding ability. The top 3 diagnostic reasons are:\n\n1. **Lack of Production Cloud Deployment History:**\n   - Many applicants have local PyTorch models, but lack verified **AWS SageMaker / Docker containerization** experience serving live traffic.\n\n2. **Vague Metric Quantification:**\n   - Resumes that describe *responsibilities* rather than *quantified business impact* (e.g. latency reductions, queries per second, benchmark percentiles) score lower in ATS screenings.\n\n3. **Missing System Design Artifacts:**\n   - Enterprise teams prioritize candidates who can demonstrate end-to-end API design (FastAPI schemas, database indexing, connection pooling).\n\n*SkillSync AI's 4-Week Learning Roadmap is specifically designed to eliminate these 3 rejection failure modes.*`;
+        suggestedPrompts = [
+          'What should I learn next to fix this?',
+          'What skills am I missing for an AI Engineer role?',
+          'Find opportunities matching my profile.'
+        ];
+      } else if (lower.includes('learn next') || lower.includes('what should i learn')) {
+        responseText = `### 🚀 What You Should Learn Next (Priority Action Plan)\n\nBased on your current 92% readiness score, here is your highest-leverage learning sequence:\n\n- **Step 1 (Days 1-7): Docker for AI Engineers**\n  - Build multi-stage Dockerfiles packaging Python 3.11, PyTorch CUDA runtimes, and reduce image sizes under 450MB.\n\n- **Step 2 (Days 8-14): FastAPI + Qdrant Microservices**\n  - Package your Multi-Modal RAG Assistant into Docker Compose with health checks and asynchronous token batching.\n\n- **Step 3 (Days 15-21): AWS S3 & IAM Security**\n  - Configure encrypted model weight buckets and automated EC2 GPU instance provisioning.\n\n- **Step 4 (Days 22-28): Amazon SageMaker Serverless Endpoints**\n  - Deploy autoscaling inference with CloudWatch telemetry (<120ms P95 latency).\n\n*Completing this roadmap takes ~28 hours total and unlocks 100% qualification.*`;
+        suggestedPrompts = [
+          'Add this sequence to my Learning Roadmap',
+          'Which jobs am I most suitable for?',
+          'Conduct a mock interview for the Microsoft AI Engineer Intern role'
+        ];
+      } else if (lower.includes('find opportunities') || lower.includes('matching my profile') || lower.includes('opportunities')) {
+        responseText = `### 💼 Matched Opportunities for Your Profile\n\nI have retrieved **14 qualified opportunities** ranked by your AI vector compatibility score:\n\n1. **Microsoft** — AI Engineer Intern (**92% Match**)\n   - *Location:* Redmond, WA / Remote (Hybrid) • *$48 - $56/hr + Housing*\n\n2. **Google DeepMind** — Machine Learning Engineering Intern (**90% Match**)\n   - *Location:* Mountain View, CA / London • *$52 - $60/hr + Relocation*\n\n3. **Meta (FAIR)** — AI Research Intern (**89% Match**)\n   - *Location:* Menlo Park, CA / Remote • *$55 - $64/hr + Housing*\n\n4. **Amazon (AWS)** — Generative AI & Data Systems Intern (**86% Match**)\n   - *Location:* Seattle, WA / Bangalore • *$45 - $54/hr*\n\n5. **Anthropic** — Junior AI Applied Scientist (**85% Match**)\n   - *Location:* San Francisco, CA / Remote • *$120k - $150k + Equity*`;
+        suggestedPrompts = [
+          'Why am I a 92% match for Microsoft?',
+          'What skills am I missing for an AI Engineer role?',
+          'Conduct a mock interview for Microsoft'
+        ];
+      } else if (lower.includes('microsoft') || lower.includes('copilot')) {
         responseText = `### 🎯 Strategic Interview Playbook: Microsoft AI Engineer Intern (92% Match)\n\n#### 1. Core Technical Talking Points:\n- **Multi-Modal RAG Architecture:** Detail your 420 ★ GitHub project combining Qdrant vector indexing, sentence embeddings, and FastAPI token streaming.\n- **Low-Latency Inference:** Explain your C++ and PyTorch quantization benchmarks reducing latency by 35%.\n- **Database Performance:** Highlight your SQL query optimization (indexing & EXPLAIN ANALYZE) at DataStream Technologies handling 50k IoT feeds.\n\n#### 2. Sample Technical Screening Question:\n> *"How do you handle retrieval hallucination when embedding cosine similarity scores are borderline (<0.65)?"*\n\n**Recommended Response:**\n1. Implement hybrid search (BM25 sparse keyword + dense embeddings).\n2. Apply cross-encoder re-ranking on the top 20 candidate chunks.\n3. Add a confidence threshold gate with explicit citation provenance.`;
         suggestedPrompts = [
           'Conduct a live technical mock interview for Microsoft',
           'Explain how to master AWS SageMaker & Docker to reach 100%',
           'Critique my RAG project architecture for engineering hiring managers'
         ];
-      } else if (lower.includes('deepmind') || lower.includes('c++') || lower.includes('algorithm')) {
-        responseText = `### 🧠 Google DeepMind ML Engineering Playbook (90% Match)\n\n#### 1. Why DeepMind Values Your Profile:\n- DeepMind looks for candidates who balance high-level Python ML modeling with low-level **C++ SIMD performance**.\n- Your real-time edge vision pipeline in C++ and **Top 2.1% algorithmic rank** give you a significant edge.\n\n#### 2. Key DeepMind Interview Concepts:\n- **Transformer Attention Complexity:** FlashAttention memory tiling ($O(N)$ SRAM vs $O(N^2)$ HBM).\n- **Distributed Training:** PyTorch DDP vs FSDP and gradient accumulation across TPU/GPU clusters.\n- **C++ Concurrency:** Lock-free queues, memory barriers, and SIMD vectorization with OpenCV.`;
-        suggestedPrompts = [
-          'Give me 3 C++ concurrency questions asked at DeepMind',
-          'How do I explain PyTorch DDP multi-GPU training?',
-          'Simulate an algorithmic system design problem'
-        ];
-      } else if (lower.includes('aws') || lower.includes('docker') || lower.includes('sagemaker') || lower.includes('roadmap') || lower.includes('100%')) {
-        responseText = `### ⚡ 4-Week Accelerated Roadmap to 100% Role Qualification\n\n- **Week 1 (Docker Fundamentals):** Multi-stage builds, CUDA runtime containerization (<450MB image).\n- **Week 2 (Docker + ML Serving):** FastAPI + Uvicorn worker pools, health check probes, Docker Compose with Qdrant.\n- **Week 3 (AWS Fundamentals):** IAM least-privilege security policies, S3 model artifact buckets, EC2 GPU provisioning.\n- **Week 4 (Deploy ML on AWS):** Amazon SageMaker serverless endpoints, ECS Fargate, CloudWatch latency telemetry (<120ms P95).\n\n*Completing these 4 milestones bridges your qualification from 92% to 100% verified match across all 14 target roles.*`;
-        suggestedPrompts = [
-          'Show me the Dockerfile template for PyTorch + FastAPI',
-          'How do I set up an autoscaling SageMaker endpoint?',
-          'Recalculate my matches after completing AWS & Docker'
-        ];
-      } else if (lower.includes('resume') || lower.includes('project') || lower.includes('rag')) {
-        responseText = `### 📝 AI Project Resume Critique: Multi-Modal RAG Knowledge Assistant\n\n#### Original Bullet Points:\n- Built a RAG application in Python and PyTorch with vector search.\n\n#### 🚀 High-Impact Rewritten Version:\n- **Architected and open-sourced** an end-to-end Multi-Modal RAG Knowledge Assistant in **Python, PyTorch, and Qdrant** (420 ★ GitHub), achieving sub-140ms semantic retrieval over 250k+ technical documents.\n- **Constructed asynchronous FastAPI REST endpoints** with connection pooling and Redis caching, sustaining 450+ concurrent requests with zero dropped frames.\n- **Benchmarked token precision and latency**, improving model hallucination resilience by 28% through cross-encoder re-ranking.`;
-        suggestedPrompts = [
-          'Critique my C++ Edge Vision project bullets',
-          'Draft a tailored cover letter for Microsoft Copilot',
-          'How do I present my NIT GPA (3.91) effectively?'
-        ];
       } else {
-        responseText = `Hello **${currentProfile.fullName}**! I am your **SkillSync AI Career Copilot**.\n\nHere is your current career standing:\n- **Active Persona:** ${currentProfile.fullName} (${currentProfile.title})\n- **Top Opportunity:** Microsoft AI Engineer Intern (**92% Match**)\n- **Key Missing Skills:** AWS & Docker (Closing these will bring your match score to **100%**)\n\nWhat would you like to prepare for next?`;
+        responseText = `Hello **${currentProfile.fullName}**! I am your **SkillSync AI Career Copilot**.\n\nI have active memory of your profile:\n- **Candidate Dossier:** ${currentProfile.fullName} (NIT, GPA 3.91, CS & AI)\n- **Top Opportunity:** Microsoft AI Engineer Intern (**92% Match**)\n- **Verified Skills:** Python, Machine Learning, C++, SQL, PyTorch, FastAPI\n- **Target Skill Gaps:** AWS, Docker, Kubernetes\n\nHow can I help you accelerate your career today?`;
         suggestedPrompts = [
-          'Conduct a mock interview for the Microsoft AI Engineer Intern role',
-          'Explain the 4-week roadmap to master AWS & Docker',
-          'Critique my RAG project description for tech resumes',
-          'Give me 5 practice C++ algorithm questions asked at Google DeepMind'
+          'Which jobs am I most suitable for?',
+          'What skills am I missing for an AI Engineer role?',
+          'How can I improve my resume?',
+          'What should I learn next?'
         ];
       }
 
@@ -444,6 +465,7 @@ export const App: React.FC = () => {
               onSendMessage={handleSendMessage}
               currentProfile={currentProfile}
               onNavigate={handleNavigate}
+              opportunities={opportunities}
             />
           )}
 
